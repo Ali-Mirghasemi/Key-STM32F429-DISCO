@@ -81,8 +81,8 @@ void Key_deInitPin(const Key_PinConfig* config);
 #endif
 
 static const Key_Driver KEY_DRIVER = {
-  Key_initPin,
   Key_readPin,
+  Key_initPin,
 #if KEY_USE_DEINIT
   Key_deInitPin,
 #endif
@@ -283,7 +283,7 @@ Key_HandleStatus Btn_onHold(Key* key, Key_State state) {
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
   switch ((uint32_t) htim->Instance) {
     case TIM7_BASE:
-      Key_irq();
+      Key_handle();
       break;
   }
 }
